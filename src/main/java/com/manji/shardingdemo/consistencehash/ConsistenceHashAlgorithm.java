@@ -1,4 +1,4 @@
-package com.manji.shardingdemo.consistencehasg;
+package com.manji.shardingdemo.consistencehash;
 
 import com.manji.shardingdemo.util.ConsistenceHashUtil;
 import com.manji.shardingdemo.util.SpringUtils;
@@ -18,6 +18,13 @@ import java.util.SortedMap;
  * @Date 2023/5/4
  */
 public class ConsistenceHashAlgorithm implements RangeShardingAlgorithm<Long>, PreciseShardingAlgorithm<Long> {
+
+    /**
+     * 范围查找时需要用到改分片算法，这里暂不完善了
+     * @param collection
+     * @param rangeShardingValue
+     * @return
+     */
     @Override
     public Collection<String> doSharding(Collection collection, RangeShardingValue rangeShardingValue) {
         System.out.println(collection);
@@ -25,6 +32,11 @@ public class ConsistenceHashAlgorithm implements RangeShardingAlgorithm<Long>, P
         return collection;
     }
 
+    /**
+     * @param collection collection 配置文件中解析到的所有分片节点
+     * @param preciseShardingValue 解析到的sql值
+     * @return
+     */
     @Override
     public String doSharding(Collection collection, PreciseShardingValue preciseShardingValue) {
         System.out.println(collection);

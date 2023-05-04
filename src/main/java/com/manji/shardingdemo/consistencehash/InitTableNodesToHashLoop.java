@@ -1,4 +1,4 @@
-package com.manji.shardingdemo.consistencehasg;
+package com.manji.shardingdemo.consistencehash;
 
 
 import com.manji.shardingdemo.util.ConsistenceHashUtil;
@@ -18,6 +18,11 @@ import java.util.HashMap;
 import java.util.SortedMap;
 import java.util.stream.Collectors;
 
+/**
+ * 初始化hash环
+ * @author manji
+ * @Date 2023/5/4
+ */
 @Slf4j
 @Component
 @Lazy
