@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.manji.shardingdemo.mapper.UserMapper">
+    <resultMap id="userMap" type="com.manji.shardingdemo.entity.User">
+        <id column="id" property="id" />
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
+        <result column="car_id" property="carId"/>
+    </resultMap>
+
+    <insert id="save">
+        insert into `user`
+        values (#{user.id},#{user.name},#{user.age},#{user.carId})
+    </insert>
+
+    <insert id="bachSave">
+        insert into `user`
+        values
+        <foreach collection="list" separator="," item="item">
+            (#{item.id},#{item.name},#{item.age},#{item.carId})
+        </foreach>
+    </insert>
+
+    <select id="listPage" resultType="com.manji.shardingdemo.entity.User">
+        select * from `user`
+        order by id
+            limit #{start},#{size}
+    </select>
+
+    <select id="listPage2" resultType="com.manji.shardingdemo.entity.User">
+        select * from `user`
+                          limit #{start},#{size}
+    </select>
+
+</mapper>
